@@ -1,0 +1,59 @@
+<html>    
+    <body>
+         <h1 style="text-align:center">Round 3</h1>   
+        <table style="border:1px solid gray;border-collapse:collapse;width:100%">
+            
+        </table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {      
+    var storage_name = "tambola";                      
+    var x=10;
+    var y=9;   
+    var count=1;
+    var tHtml="";
+   for(i=1;i<=y;i++){
+       var html="";
+       html+="<tr>";
+       for(j=1;j<=x;j++){
+            html+="<td data-value="+count+" style='width:10%;height:50px;border:1px solid gray;text-align:center;'>"+ count++ +"</td>";
+       }
+       html+="<tr>";
+       tHtml += html;
+   }
+   $('table').html(tHtml);
+    var arr = JSON.parse(localStorage.getItem(storage_name));
+    $("table td").each(function(){
+        if(arr && arr.indexOf($(this).data('value'))!=-1){
+            $(this).css("color","white");
+            $(this).css("background-color","green");
+            $(this).css("cursor","pointer");
+        }
+    });
+   $('table td').on("click",function(){       
+       if($(this).css("cursor") == "pointer"){
+            $(this).css("color","black");
+            $(this).css("background-color","white");
+            $(this).css("cursor","crosshair");
+            var arr = JSON.parse(localStorage.getItem(storage_name));
+                console.log(arr.splice(arr.indexOf($(this).data("value")),1));
+                localStorage.setItem(storage_name, JSON.stringify(arr));              
+       }else{
+           if(localStorage.getItem(storage_name)){
+                var arr = JSON.parse(localStorage.getItem(storage_name));
+                arr.push($(this).data("value"));
+
+           }else{
+                var arr = [];
+                arr.push($(this).data("value"));
+           }
+            $(this).css("color","white");
+            $(this).css("background-color","green");
+            $(this).css("cursor","pointer");
+            localStorage.setItem(storage_name, JSON.stringify(arr));
+       }
+    }); 
+});
+        </script>        
+    </body>
+</html>
