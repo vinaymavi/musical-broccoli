@@ -12,6 +12,7 @@
     var y=9;   
     var count=1;
     var tHtml="";
+    var hightlightTime = 30*1000;
    for(i=1;i<=y;i++){
        var html="";
        html+="<tr>";
@@ -30,7 +31,8 @@
             $(this).css("cursor","pointer");
         }
     });
-   $('table td').on("click",function(){       
+   $('table td').on("click",function(){
+       var self = this;       
        if($(this).css("cursor") == "pointer"){
             $(this).css("color","black");
             $(this).css("background-color","white");
@@ -47,11 +49,17 @@
                 var arr = [];
                 arr.push($(this).data("value"));
            }
-            $(this).css("color","white");
-            $(this).css("background-color","green");
+            $(this).css("color","red");
+            $(this).css("background-color","yellow");
             $(this).css("cursor","pointer");
             localStorage.setItem(storage_name, JSON.stringify(arr));
        }
+
+       setTimeout(function(){
+           $(self).css("color","white");
+            $(self).css("background-color","green");
+            $(self).css("cursor","pointer");
+       },hightlightTime);
     }); 
 });
         </script>        
