@@ -1,0 +1,31 @@
+table {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td {
+    width: 10%;
+    height: 50px;
+    border: 1px solid gray;
+    text-align: center;
+}
+
+.current-number {
+    background-color: yellow;
+    color: red;
+}
+
+.previous-number {
+    background-color: green;
+    color: white;
+}
+
+.remaining-number {
+    background-color: white;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+}
