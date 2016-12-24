@@ -36,6 +36,7 @@ function Tambola() {
             if (arr && arr.indexOf($(this).data('value')) != -1) {
                 _removeClasses(this);
                 $(this).addClass("previous-number");
+                $(this).data("active", true);
             }
         });
     }
